@@ -1,5 +1,17 @@
 [
-    {"id": 1, "nombre": "Climatización", "descripcion": "Equipos de aire acondicionado y calefacción"},
-    {"id": 2, "nombre": "Iluminación", "descripcion": "Sistemas de luces interiores y exteriores"},
-    {"id": 3, "nombre": "Maquinaria", "descripcion": "Equipos pesados y motores de producción"}
+    {
+        "id": 1,
+        "nombre": "Climatización",
+        "descripcion": "Equipos de aire acondicionado y calefacción industrial."
+    },
+    {
+        "id": 2,
+        "nombre": "Maquinaria Pesada",
+        "descripcion": "Motores y líneas de ensamblaje principal."
+    },
+    {
+        "id": 3,
+        "nombre": "Iluminación y Cómputo",
+        "descripcion": "Luminarias LED, servidores y computadores de oficina."
+    }
 ]

@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="mb-3">
+    <a href="{% url 'dispositivos:lista_zonas' %}" class="btn btn-outline-secondary btn-sm">&larr; Volver al listado</a>
+</div>
+
+<h2 class="mb-4">Detalle de Zona: {{ zona.nombre }}</h2>
+
+<!-- Tarjetas Resumen -->
+<div class="row g-3 mb-4">
+    <div class="col-md-3">
+        <div class="card text-center bg-white shadow-sm p-2">
+            <span class="text-muted fs-7">Límite</span>
+            <span class="fs-4 fw-bold">{{ zona.limite_kwh }} kWh</span>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card text-center bg-white shadow-sm p-2">
+            <span class="text-muted fs-7">Consumo Total</span>
+            <span class="fs-4 fw-bold">{{ consumo_total }} kWh</span>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card text-center bg-white shadow-sm p-2">
+            <span class="text-muted fs-7">Dispositivos</span>
+            <span class="fs-4 fw-bold">{{ cant_dispositivos }}</span>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card text-center p-2 {% if estado_zona == 'ALERTA' %}bg-danger text-white{% else %}bg-success text-white{% endif %}">
+            <span class="fs-7">Estado General</span>
+            <span class="fs-4 fw-bold">
+                {% if estado_zona == 'ALERTA' %}
+                    ⚠️ ALERTA
+                {% else %}
+                    ✓ NORMAL
+                {% endif %}
+            </span>
+        </div>
+    </div>
+</div>
+
+<!-- Tabla de Dispositivos y Aplicación -->
+<h4 class="mt-4 mb-3">Dispositivos Instalados</h4>
+
+{% if dispositivos %}
+    <div class="table-responsive shadow-sm rounded bg-white">
+        <table class="table table-hover align-middle mb-0">
+            <thead class="table-dark">
+                <tr>
+                    <th>Dispositivo</th>
+                    <th>Aplicación / Categoría</th>
+                    <th>Consumo (kWh)</th>
+                    <th>Tipo de Carga</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for d in dispositivos %}
+                <tr>
+                    <td class="fw-bold">{{ d.nombre }}</td>
+                    <td><span class="badge bg-secondary">{{ d.categoria }}</span></td>
+                    <td>{{ d.consumo_kwh }} kWh</td>
+                    <td>
+                        {% if d.carga_peligrosa %}
+                            <span class="badge bg-warning text-dark">⚠️ Carga Peligrosa</span>
+                        {% else %}
+                            <span class="badge bg-info text-dark">✓ Carga Normal</span>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% else %}
+    <div class="alert alert-warning text-center" role="alert">
+        Esta zona no tiene dispositivos asociados actualmente.
+    </div>
+{% endif %}
+{% endblock %}
