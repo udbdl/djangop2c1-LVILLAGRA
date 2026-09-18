@@ -1,92 +1,51 @@
-# EcoEnergy — Backend
+# EcoEnergy
 
-Backend del proyecto EcoEnergy, desarrollado con Python y Django.
+Aplicación Django para consultar zonas de consumo energético y los dispositivos instalados en ellas. La información se carga desde `data/zonas.json`, `data/categorias.json` y `data/dispositivos.json`, sin usar Models ni ORM.
 
-## Descripción y objetivo
+## Requisitos
 
-Este proyecto corresponde al backend de EcoEnergy y tiene como objetivo proporcionar la estructura y funcionalidades necesarias para el funcionamiento de la aplicación.
+- Python 3.12 o superior
+- Django 6.1
+- Dependencias de `requirements.txt`
 
-Actualmente se encuentra en etapa de desarrollo.
+## Instalación y ejecución
 
-## Requisitos previos
-
-Antes de comenzar, es necesario contar con:
-
-- Python instalado.
-- Git instalado.
-- Acceso al repositorio del proyecto.
-- Una terminal o consola de comandos.
-
-No se especifican versiones concretas, ya que no han sido definidas.
-
-## Clonación del repositorio
-
-Desde la carpeta donde se desea almacenar el proyecto, clonar el repositorio:
-
-git clone <URL_DEL_REPOSITORIO>
-
-Luego, ingresar al directorio del proyecto:
-
-cd "Proyecto Integrado/EcoEnergy"
-
-Reemplaza <URL_DEL_REPOSITORIO> por la URL correspondiente al repositorio.
-
-## Creación del entorno virtual
-
-Crear un entorno virtual llamado .venv:
-
+```bash
 python -m venv .venv
+```
 
-## Activación del entorno virtual
+Windows:
 
-### Windows
-
+```powershell
 .venv\Scripts\activate
-
-### macOS / Linux
-
-source .venv/bin/activate
-
-Una vez activado, la terminal debería mostrar el entorno .venv como parte del prompt.
-
-## Instalación de dependencias
-
-Con el entorno virtual activado, instalar las dependencias especificadas en requirements.txt:
-
 pip install -r requirements.txt
-
-## Verificación del proyecto
-
-Para comprobar que la configuración de Django es correcta, ejecutar:
-
 python manage.py check
-
-Si no se presentan errores, se puede iniciar el servidor de desarrollo con:
-
 python manage.py runserver
+```
 
-Esto permite verificar que el proyecto puede iniciar correctamente en el entorno local.
+macOS/Linux:
 
-## Estado actual
+```bash
+source .venv/bin/activate
+pip install -r requirements.txt
+python manage.py check
+python manage.py runserver
+```
 
-El proyecto se encuentra actualmente en desarrollo.
+## Rutas funcionales
 
-La información detallada sobre las funcionalidades implementadas se irá actualizando a medida que avance el desarrollo.
+- `/`: portada EcoEnergy.
+- `/zonas/`: listado dinámico de zonas, límite, cantidad de dispositivos y acceso al detalle.
+- `/zonas/<id>/`: detalle de una zona, consumo total, categorías, dispositivos y estado `NORMAL` o `ALERTA`.
 
-## Próximos pasos
+Una zona sin dispositivos muestra un mensaje informativo. Un identificador inexistente responde con 404.
 
-Continuar con el desarrollo y configuración del backend de acuerdo con los requerimientos definidos para EcoEnergy.
+## Pruebas
 
-Esta sección se actualizará conforme se incorporen nuevas funcionalidades y componentes al proyecto.
+```bash
+python manage.py test
+python -m compileall -q .
+```
 
-## Estructura de trabajo
-
-El proyecto se encuentra dentro de la siguiente ruta:
-
-Proyecto Integrado/
-└── EcoEnergy/
-
----
-
-Nota: Este README evita especificar versiones de Python o Django, URL del repositorio y funcionalidades concretas que no hayan sido confirmadas.
+Las pruebas verifican el listado, el detalle, los estados, una zona sin dispositivos y el 404.
 # djangop2c1-LVILLAGRA
